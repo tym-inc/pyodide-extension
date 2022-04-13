@@ -6,7 +6,7 @@
 	"publisher": "tym-inc",
 	"private": true,
 	"license": "MIT",
-	"repository": "",
+	"repository": "https://github.com/tym-inc/pyodide-extension",
 	"engines": {
 		"vscode": "^1.59.0"
 	},
