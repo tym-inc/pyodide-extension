@@ -14,6 +14,8 @@ This magic is enabled by Pyodide 🪄, a port of CPython to WebAssembly/Emscript
 ## Known Limitations
 1. [Certain modules](https://pyodide.org/en/stable/usage/wasm-constraints.html) cannot be loaded on Pyodide due to limitations of WASM. 
 2. Python code may be slow to run when there are many imports, as a new web worker is created each time and the modules will be downloaded on each run. This was done to make sure local imports are handled correctly as there is no easy way for Pyodide to refresh local imports. Once the mechanism of this caching is more clear, a more efficient workaround may arise.
+3. Support for stdin and visual output is WIP.
+4. IntelliSense might be restricted as modules may not be installed on your filesystem.
 
 ## Acknowledgments
 This extension builds on top of:

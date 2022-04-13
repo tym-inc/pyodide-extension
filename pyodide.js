@@ -32,7 +32,7 @@ self.onmessage = async (event) => {
         self.interruptBuffer[0] = 0;
         await self.pyodide.loadPackagesFromImports(python);
         let results = await self.pyodide.runPythonAsync(python);
-        self.postMessage({ results, done: true });
+        self.postMessage({ done: true });
       } catch (error) {
         self.postMessage({ error: error.message, done: true });
       }

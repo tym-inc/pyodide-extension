@@ -2,7 +2,7 @@
 	"name": "pyodide",
 	"displayName": "Pyodide Runner",
 	"description": "",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "tym-inc",
 	"private": true,
 	"license": "MIT",
@@ -78,6 +78,7 @@
 		"package-web": "webpack --mode production --devtool hidden-source-map",
 		"lint": "eslint src --ext ts"
 	},
+	"icon": "resources/tym-128.png",
 	"devDependencies": {
 		"@types/mocha": "^9.0.0",
 		"@types/vscode": "^1.59.0",
