@@ -1,26 +1,20 @@
-# Hello World Sample
+# 🐍 Run python files on the web with ZERO setup
 
-This is a Hello World Web Extension example that shows you how to write a extension that runs in VS Code Web (alone)
+Run Python code on VS Code without installing a Python intepreter! 🤯 
 
-Guide for this sample: https://code.visualstudio.com/api/extension-guides/web-extensions.
+This magic is enabled by Pyodide 🪄, a port of CPython to WebAssembly/Emscripten that lets you run Python on the web!
 
+## 🚀 How it works
 
-## VS Code API
+1. Open a python file
+2. Run it by clicking green play button on the top right corner of the editor.
+3. See the output!
+4. You can also stop the execution of your file by clicking on the red stop button.
 
-### `vscode` module
+## Known Limitations
+1. [Certain modules](https://pyodide.org/en/stable/usage/wasm-constraints.html) cannot be loaded on Pyodide due to limitations of WASM. 
+2. Python code may be slow to run when there are many imports, as a new web worker is created each time and the modules will be downloaded on each run. This was done to make sure local imports are handled correctly as there is no easy way for Pyodide to refresh local imports. Once the mechanism of this caching is more clear, a more efficient workaround may arise.
 
-- [`commands.registerCommand`](https://code.visualstudio.com/api/references/vscode-api#commands.registerCommand)
-- [`window.showInformationMessage`](https://code.visualstudio.com/api/references/vscode-api#window.showInformationMessage)
-
-### Contribution Points
-
-- [`browser`](https://code.visualstudio.com/api/references/extension-manifest)
-
-- [`contributes.commands`](https://code.visualstudio.com/api/references/contribution-points#contributes.commands)
-
-## Running the Sample
-
-- Run `npm install` in terminal to install dependencies
-- Run the `Run Web Extension` target in the Debug View. This will:
-	- Start a task `npm: watch` to compile the code
-	- Run the extension in a new VS Code window that contains a web extension host
+## Acknowledgments
+This extension builds on top of:
+1. [Pyodide](https://pyodide.org/en/stable/development/core.html)

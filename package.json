@@ -1,8 +1,8 @@
 {
 	"name": "pyodide",
-	"displayName": "Pyodide",
+	"displayName": "Pyodide Runner",
 	"description": "",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"publisher": "tym-inc",
 	"private": true,
 	"license": "MIT",
@@ -11,11 +11,64 @@
 		"vscode": "^1.59.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages",
+		"Education"
 	],
-	"activationEvents": [],
+	"activationEvents": [
+		"onCommand:pyodide.runFile"
+	],
 	"browser": "./dist/web/extension.js",
-	"contributes": {},
+	"contributes": {
+		"menus": {
+			"editor/title": [
+				{
+					"command": "pyodide.runFile",
+					"when": "resourceLangId == python && !pyodide.isRunning",
+					"group": "navigation"
+				},
+				{
+					"command": "pyodide.stop",
+					"when": "resourceLangId == python && pyodide.isRunning",
+					"group": "navigation"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "pyodide.runFile",
+				"title": "Run Python File with Pyodide",
+				"category": "Pyodide",
+				"icon": {
+					"dark": "resources/dark/start.svg",
+					"light": "resources/light/start.svg"
+				}
+			},
+			{
+				"command": "pyodide.stop",
+				"title": "Stop Pyodide",
+				"category": "Pyodide",
+				"icon": {
+					"dark": "resources/dark/stop.svg",
+					"light": "resources/light/stop.svg"
+				}
+			}
+		],
+		"languages": [
+			{
+				"id": "pyodide-output",
+				"mimetypes": [
+					"text/x-code-output"
+				]
+			}
+		],
+		"grammars": [
+			{
+				"language": "pyodide-output",
+				"scopeName": "pyodide.output",
+				"path": "./resources/pyodide-output.tmLanguage"
+			}
+		]
+	},
 	"scripts": {
 		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
 		"pretest": "npm run compile-web",
@@ -41,7 +94,5 @@
 		"webpack": "^5.52.1",
 		"webpack-cli": "^4.8.0"
 	},
-	"dependencies": {
-		"pyodide": "^0.20.0"
-	}
+	"dependencies": {}
 }
