@@ -2,12 +2,14 @@ import * as vscode from "vscode";
 import { PyodideRunner } from "./pyodideRunner";
 
 export class OutputWebview {
-  private _outputWebview: vscode.WebviewPanel;
-  constructor(private readonly _pyodideRunner: PyodideRunner) {
+  private _outputWebview: vscode.WebviewPanel | undefined;
+  constructor(private readonly _pyodideRunner: PyodideRunner) {}
+
+  private _setupOutputWebview() {
     this._outputWebview = vscode.window.createWebviewPanel(
       "pyodide.outputWebview", // Identifies the type of the webview. Used internally
       "Pyodide Output", // Title of the panel displayed to the user
-      vscode.ViewColumn.Two, // Editor column to show the new webview panel in.
+      vscode.ViewColumn.Beside, // Editor column to show the new webview panel in.
       {
         // Enable scripts in the webview
         enableScripts: true, // Set this to true if you want to enable Javascript.
@@ -23,10 +25,17 @@ export class OutputWebview {
       }
     });
     this._outputWebview.webview.html = getWebviewContent();
+    this._outputWebview.onDidDispose(() => {
+      vscode.commands.executeCommand("pyodide.stop");
+      this._outputWebview = undefined;
+    });
   }
 
   public async runGraphics(command: string, data: any) {
-    this._outputWebview.webview.postMessage({ type: command, data });
+    if (!this._outputWebview) {
+      this._setupOutputWebview();
+    }
+    this._outputWebview!.webview.postMessage({ type: command, data });
   }
 }
 
@@ -58,9 +67,9 @@ function getWebviewContent() {
 				newCanvas.width = width;
 				newCanvas.style = canvasStyle;
 				newCanvas.id = canvasId
-				// newCanvas.onmousemove = (e) => {
-				// 	vscode.postMessage({type: 'set_mouse_pos', data: { x: e.offsetX, y: e.offsetY } });
-				// }
+				newCanvas.onmousemove = (e) => {
+					vscode.postMessage({type: 'set_mouse_pos', data: { x: e.offsetX, y: e.offsetY } });
+				}
 				// Remove existing children of canvas container
 				while (canvasContainer.firstChild) {
 					canvasContainer.removeChild(canvasContainer.firstChild);

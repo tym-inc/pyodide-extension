@@ -1,99 +1,99 @@
 {
-	"name": "pyodide",
-	"displayName": "Pyodide Runner",
-	"description": "",
-	"version": "1.0.1",
-	"publisher": "tym-inc",
-	"private": true,
-	"license": "MIT",
-	"repository": "https://github.com/tym-inc/pyodide-extension",
-	"engines": {
-		"vscode": "^1.59.0"
-	},
-	"categories": [
-		"Programming Languages",
-		"Education"
-	],
-	"activationEvents": [
-		"onCommand:pyodide.runFile"
-	],
-	"browser": "./dist/web/extension.js",
-	"contributes": {
-		"menus": {
-			"editor/title": [
-				{
-					"command": "pyodide.runFile",
-					"when": "resourceLangId == python && !pyodide.isRunning",
-					"group": "navigation"
-				},
-				{
-					"command": "pyodide.stop",
-					"when": "resourceLangId == python && pyodide.isRunning",
-					"group": "navigation"
-				}
-			]
-		},
-		"commands": [
-			{
-				"command": "pyodide.runFile",
-				"title": "Run Python File with Pyodide",
-				"category": "Pyodide",
-				"icon": {
-					"dark": "resources/dark/start.svg",
-					"light": "resources/light/start.svg"
-				}
-			},
-			{
-				"command": "pyodide.stop",
-				"title": "Stop Pyodide",
-				"category": "Pyodide",
-				"icon": {
-					"dark": "resources/dark/stop.svg",
-					"light": "resources/light/stop.svg"
-				}
-			}
-		],
-		"languages": [
-			{
-				"id": "pyodide-output",
-				"mimetypes": [
-					"text/x-code-output"
-				]
-			}
-		],
-		"grammars": [
-			{
-				"language": "pyodide-output",
-				"scopeName": "pyodide.output",
-				"path": "./resources/pyodide-output.tmLanguage"
-			}
-		]
-	},
-	"scripts": {
-		"test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
-		"pretest": "npm run compile-web",
-		"vscode:prepublish": "npm run package-web",
-		"compile-web": "webpack",
-		"watch-web": "webpack --watch",
-		"package-web": "webpack --mode production --devtool hidden-source-map",
-		"lint": "eslint src --ext ts"
-	},
-	"icon": "resources/tym-128.png",
-	"devDependencies": {
-		"@types/mocha": "^9.0.0",
-		"@types/vscode": "^1.59.0",
-		"@types/webpack-env": "^1.16.2",
-		"@typescript-eslint/eslint-plugin": "^4.31.1",
-		"@typescript-eslint/parser": "^4.31.1",
-		"@vscode/test-web": "^0.0.22",
-		"assert": "^2.0.0",
-		"eslint": "^7.32.0",
-		"mocha": "^9.2.0",
-		"process": "^0.11.10",
-		"ts-loader": "^9.2.5",
-		"typescript": "^4.5.5",
-		"webpack": "^5.52.1",
-		"webpack-cli": "^4.8.0"
-	},
-	"dependencies": {}
+  "name": "pyodide",
+  "displayName": "Pyodide Runner",
+  "description": "",
+  "version": "1.0.2",
+  "publisher": "tym-inc",
+  "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/tym-inc/pyodide-extension",
+  "engines": {
+    "vscode": "^1.59.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Education"
+  ],
+  "activationEvents": [
+    "onCommand:pyodide.runFile"
+  ],
+  "browser": "./dist/web/extension.js",
+  "contributes": {
+    "menus": {
+      "editor/title": [
+        {
+          "command": "pyodide.runFile",
+          "when": "resourceLangId == python && !pyodide.isRunning",
+          "group": "navigation"
+        },
+        {
+          "command": "pyodide.stop",
+          "when": "resourceLangId == python && pyodide.isRunning",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "pyodide.runFile",
+        "title": "Run Python File with Pyodide",
+        "category": "Pyodide",
+        "icon": {
+          "dark": "resources/dark/start.svg",
+          "light": "resources/light/start.svg"
+        }
+      },
+      {
+        "command": "pyodide.stop",
+        "title": "Stop Pyodide",
+        "category": "Pyodide",
+        "icon": {
+          "dark": "resources/dark/stop.svg",
+          "light": "resources/light/stop.svg"
+        }
+      }
+    ],
+    "languages": [
+      {
+        "id": "pyodide-output",
+        "mimetypes": [
+          "text/x-code-output"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pyodide-output",
+        "scopeName": "pyodide.output",
+        "path": "./resources/pyodide-output.tmLanguage"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=. --extensionTestsPath=dist/web/test/suite/index.js",
+    "pretest": "npm run compile-web",
+    "vscode:prepublish": "npm run package-web",
+    "compile-web": "webpack",
+    "watch-web": "webpack --watch",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "lint": "eslint src --ext ts"
+  },
+  "icon": "resources/tym-128.png",
+  "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "@types/vscode": "^1.59.0",
+    "@types/webpack-env": "^1.16.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "@vscode/test-web": "^0.0.22",
+    "assert": "^2.0.0",
+    "eslint": "^7.32.0",
+    "mocha": "^9.2.0",
+    "process": "^0.11.10",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.5.5",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {}
 }
